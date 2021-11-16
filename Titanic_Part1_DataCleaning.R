@@ -5,7 +5,7 @@
 
 
 # Set working directory
-setwd("C:/Users/hanna/OneDrive/Dokumenty/Projects/Kaggle/titanic")
+#setwd("C:/Users/hanna/OneDrive/Dokumenty/Projects/Kaggle/titanic")
 
 # Import libraries
 library(tidyverse)
@@ -130,6 +130,6 @@ summary(merged$Embarked)
 
 
 # Save marged data.frame in working directory
-write.csv(merged, "C:/Users/hanna/OneDrive/Dokumenty/Projects/Kaggle/titanic/merged.csv", sep = ",", row.names = FALSE, col.names = TRUE)
+write.csv(merged, "merged.csv", sep = ",", row.names = FALSE, col.names = TRUE)
 
 # All missing values are substituted. In part 2 I'm going to do some EDA to take a closer look at the variables and their correlation with the target variable - Survived
