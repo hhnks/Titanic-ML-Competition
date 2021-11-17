@@ -5,7 +5,7 @@
 
 
 # Set working directory
-#setwd("C:/Users/hanna/OneDrive/Dokumenty/Projects/Kaggle/titanic")
+setwd("C:/Users/hanna/OneDrive/Dokumenty/Projects/Kaggle/titanic")
 
 # Import libraries
 library(tidyverse)
@@ -78,20 +78,22 @@ NAs
 
 # Dealing with missing values in Age variable
 # Visualize Age distribution using histogram, boxplot and density plot
-Age_hist<-ggplot(merged, aes(Age))+
+Age_hist <- ggplot(merged, aes(Age))+
   geom_histogram(binwidth = 2, colour="red", fill="pink", na.rm = TRUE)+
   xlab("age")
 
-Age_box<-ggplot(merged, aes(y=Age))+
+Age_box <- ggplot(merged, aes(y=Age))+
   geom_boxplot(colour="red", fill="pink", na.rm =TRUE)+
   scale_x_discrete()+
   coord_flip()
 
-Age_distribution<-ggplot(merged, aes(x=Age))+
+Age_dist <- ggplot(merged, aes(x=Age))+
   geom_density(colour="red", fill="pink", na.rm = TRUE)+
   xlab("age")
 
-grid.arrange(arrangeGrob(Age_hist, Age_box, Age_distribution, nrow = 2), top="Age distribution of Titanic passengers")
+Age_distribution <- grid.arrange(arrangeGrob(Age_hist, Age_box, Age_dist, nrow = 2), top="Age distribution of Titanic passengers")
+ggsave("plots/Age_distribution.pdf", plot=Age_distribution)
+Age_distribution
 
 # The distribution is slightly right skewed, that is why I replace NAs by median, not mean
 
@@ -99,9 +101,22 @@ median_age <- median(merged$Age, na.rm = TRUE)
 merged$Age <- ifelse(is.na(merged$Age), median_age, merged$Age)
 
 # The distribution is deformed because of number of NA but I'll leave it like that for now
-grid.arrange(arrangeGrob(Age_hist, Age_box, Age_distribution, nrow = 2), top="Age distribution of Titanic passengers")
+Age_hist <- ggplot(merged, aes(Age))+
+  geom_histogram(binwidth = 2, colour="red", fill="pink", na.rm = TRUE)+
+  xlab("age")
 
+Age_box <- ggplot(merged, aes(y=Age))+
+  geom_boxplot(colour="red", fill="pink", na.rm =TRUE)+
+  scale_x_discrete()+
+  coord_flip()
 
+Age_dist <- ggplot(merged, aes(x=Age))+
+  geom_density(colour="red", fill="pink", na.rm = TRUE)+
+  xlab("age")
+
+Age_distribution2 <- grid.arrange(arrangeGrob(Age_hist, Age_box, Age_dist, nrow = 2), top="Age distribution of Titanic passengers")
+ggsave("plots/Age_distribution2.pdf", plot=Age_distribution2)
+Age_distribution2
 
 # Dealing with missing values in Fare variable
 summary(merged$Fare)
@@ -130,6 +145,6 @@ summary(merged$Embarked)
 
 
 # Save marged data.frame in working directory
-write.csv(merged, "merged.csv", sep = ",", row.names = FALSE, col.names = TRUE)
+write.csv(merged, "merged.csv", row.names = FALSE)
 
 # All missing values are substituted. In part 2 I'm going to do some EDA to take a closer look at the variables and their correlation with the target variable - Survived
