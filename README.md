@@ -29,11 +29,17 @@ Variables in dataset with definition:
 * Cabin - Cabin number
 * Embarked - Port of Embarkation -> C = Cherbourg, Q = Queenstown, S = Southampton
 
-## R (RStudio)
-
-R version 4.1.1 (2021-08-10)
-
+## Workflow of a project
 My work is divided into 3 parts:
 * Part 1 - Data Cleaning
 * Part 2 - EDA
 * Part 3 - Decision Tree Model
+
+## R (RStudio)
+
+R version 4.1.1 (2021-08-10)
+
+R packages:
+* ggplot2
+* dplyr
+* gridExtra
