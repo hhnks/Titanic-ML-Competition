@@ -145,6 +145,7 @@ summary(merged$Embarked)
 
 
 # Save marged data.frame in working directory
-write.csv(merged, "merged.csv", row.names = FALSE)
+write.csv(merged, "merged.csv", row.names = FALSE, na="NA")
 
 # All missing values are substituted. In part 2 I'm going to do some EDA to take a closer look at the variables and their correlation with the target variable - Survived
+
