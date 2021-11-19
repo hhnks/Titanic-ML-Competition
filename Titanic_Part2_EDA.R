@@ -39,7 +39,8 @@ pclass_bar <- ggplot(merged[1:891,], aes(x=Pclass, fill=Survived))+
   geom_bar( position = 'dodge')
 
 grid.arrange(pclass_bar_norm, pclass_bar, nrow=1)
-ggsave("plots/pclass_barplot.pdf", plot = last_plot())
+g <- arrangeGrob(pclass_bar_norm, pclass_bar, nrow=1) #generates g
+ggsave("plots/pclass_barplot.pdf", plot = g)
 # Over 60% of passengers from 1st class survived, while 75% people from 3rd class died
 
 
@@ -51,7 +52,9 @@ sex_bar <- ggplot(merged[1:891,], aes(x=Sex, fill=Survived))+
   geom_bar( position = 'dodge')
 
 grid.arrange(sex_bar_norm, sex_bar, nrow=1)
-ggsave("plots/sex_barplot.pdf", plot = last_plot())
+g <- arrangeGrob(sex_bar_norm, sex_bar, nrow=1) #generates g
+ggsave("plots/sex_barplot.pdf", plot = g)
+
 # Almost 75% of female passengers survived, while only about 18% of male passengers survived. 
 # Note that only ~ 1/3 of all passengers were female
 
@@ -64,7 +67,8 @@ sibsp_bar <- ggplot(merged[1:891,], aes(x=SibSp, fill=Survived))+
   geom_bar( position = 'dodge')
 
 grid.arrange(sibsp_bar_norm, sibsp_bar, nrow=1)
-ggsave("plots/sibsp_barplot.pdf", plot = last_plot())
+g <- arrangeGrob(sibsp_bar_norm, sibsp_bar, nrow=1)
+ggsave("plots/sibsp_barplot.pdf", plot = g)
 # Passengers with 1 Sibling/Spouse were slightly more likely to survive. 
 # For passengers with >=4 Siblings/Spouses, chances for surviving were very low (though such passengers were few)
 
@@ -77,7 +81,8 @@ parch_bar <- ggplot(merged[1:891,], aes(x=Parch, fill=Survived))+
   geom_bar( position = 'dodge')
 
 grid.arrange(parch_bar_norm, parch_bar, nrow=1)
-ggsave("plots/parch_barplot.pdf", plot = last_plot())
+g <- arrangeGrob(parch_bar_norm, parch_bar, nrow=1)
+ggsave("plots/parch_barplot.pdf", plot = g)
 # Passengers who travelled with 1-3 Parents/Children were more likely to survive.
 
 
@@ -89,7 +94,8 @@ emb_bar <- ggplot(merged[1:891,], aes(x=Embarked, fill=Survived))+
   geom_bar(position = 'dodge')
 
 grid.arrange(emb_bar_norm, emb_bar, nrow=1)
-ggsave("plots/emb_barplot.pdf", plot = last_plot())
+g <- arrangeGrob(emb_bar_norm, emb_bar, nrow=1)
+ggsave("plots/emb_barplot.pdf", plot = g)
 # For some reason, more than 50% of passengers that embarked from Cherbourg survived.
 
 
@@ -101,9 +107,10 @@ age_hist <- ggplot(merged[1:891,], aes(x=Age, fill=Survived))+
   geom_histogram( binwidth = 5, colour='black')
 
 grid.arrange(age_hist_norm, age_hist, nrow=1)
+g <- arrangeGrob(age_hist_norm, age_hist, nrow=1)
 
 sum((merged$Age > 60) & (!is.na(merged$Survived)))
-ggsave("plots/age_hist.pdf", plot=last_plot())
+ggsave("plots/age_hist.pdf", plot = g)
 # Most children under 10 y.o. survived. 
 # There might be lower survival rate for > 60 y.o. passengers but this group was too small for such statement (22 records in training dataset)
 
@@ -116,7 +123,8 @@ fare_hist <- ggplot(merged[1:891,], aes(x=Fare, fill=Survived))+
   geom_histogram( binwidth = 20, colour='black')
 
 grid.arrange(fare_hist_norm, fare_hist, nrow=2)
-ggsave("plots/fare_hist.pdf", plot=last_plot())
+g <- arrangeGrob(fare_hist_norm, fare_hist, nrow=2)
+ggsave("plots/fare_hist.pdf", plot=g)
 # Higher survvial rate for fare > 50
 
 # One variable plots showed some groups of people that were more likely to survive
@@ -151,7 +159,8 @@ fam_bar <- ggplot(merged[1:891,], aes(x=Fam, fill=Survived))+
   geom_bar()
 
 grid.arrange(fam_bar_norm, fam_bar, nrow=1)
-ggsave("plots/fam_bar.pdf", plot=last_plot())
+g <- arrangeGrob(fam_bar_norm, fam_bar, nrow=1)
+ggsave("plots/fam_bar.pdf", plot=g)
 # We can clearly see that ~90% of passengers with large family aboard and ~70% of single travellers didn't survive
 # Add Sex variable to fam_bar
 
