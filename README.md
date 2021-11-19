@@ -17,17 +17,17 @@ Kaggle also includes `gender_submission.csv`, a set of predictions that assume a
 
 Variables in dataset with definition:
 * PassengerId - unique ID
-* Survived - 
-* Pclass 
-* Name
-* Sex
-* Age
-* SibSp
-* Parch
-* Ticket      
-* Fare
-* Cabin
-* Embarked   
+* Survived - Survival -> 0 = No, 1 = Yes
+* Pclass - Ticket Class -> 1 = 1st, 2 = 2nd, 3 = 3rd
+* Name - Name and Title of a passenger
+* Sex - Sex of a Passenger
+* Age - Age of a Passenger
+* SibSp - Number of Passenger's Siblings/Spouses aboard
+* Parch - Number of Passenger's Parents/Children aboard
+* Ticket - Tictek number    
+* Fare - Passenger fare
+* Cabin - Cabin number
+* Embarked - Port of Embarkation -> C = Cherbourg, Q = Queenstown, S = Southampton
 
 ## R (RStudio)
 
@@ -36,4 +36,4 @@ R version 4.1.1 (2021-08-10)
 My work is divided into 3 parts:
 * Part 1 - Data Cleaning
 * Part 2 - EDA
-* Part 3 - The Random Forest Model
+* Part 3 - Decision Tree Model
