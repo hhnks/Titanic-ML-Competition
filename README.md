@@ -43,3 +43,5 @@ R packages:
 * ggplot2
 * dplyr
 * gridExtra
+* rpart
+* rpart.plot
