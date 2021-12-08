@@ -52,13 +52,25 @@ summary(merged)
 
 
 # Check unique values
-unique_vec <- c(length(unique(merged$PassengerId)), length(unique(merged$Survived)), length(unique(merged$Pclass)), 
-                length(unique(merged$Name)), length(unique(merged$Sex)), length(unique(merged$Age)), 
-                length(unique(merged$SibSp)), length(unique(merged$Parch)), length(unique(merged$Ticket)), 
-                length(unique(merged$Fare)),length(unique(merged$Cabin)), length(unique(merged$Embarked)))
 
-number_of_unique_values <- data.frame(unique_vec, row.names = colnames(merged[1:12]))
-number_of_unique_values
+Unique_check <- function(x){
+  # Check how many unique values has dataframe in each column
+  
+  Unique_val_df <- matrix(ncol=ncol(x), nrow=1)
+  
+  # Check over columns
+  for(i in 1:ncol(x)) {
+    Unique_val_df[ , i] <- length(unique((x[ , i])))
+  }
+  
+  Unique_val_df <- data.frame(Unique_val_df)
+  colnames(Unique_val_df) <- colnames(x)
+  
+  Unique_val_df
+}
+
+Unique_check(merged)
+
 # There are few categorical data, e.g. for variables such as Pclass, SibSp, Parch, Embarked -> So it's good to change Embarked for factor data type as well
 # Interestingly, there is a relatively large variation in prices for a ticket (Fare), types of tickets (Ticket) and Cabin
 
@@ -66,12 +78,24 @@ merged$Embarked <- as.factor(merged$Embarked)
 
 
 # Check NAs in data.frame
-NAs_vec <- c(sum(is.na(merged$PassengerId)), sum(is.na(merged$Survived)), sum(is.na(merged$Pclass)), 
-             sum(is.na(merged$Name)), sum(is.na(merged$Sex)), sum(is.na(merged$Age)), sum(is.na(merged$SibSp)),
-             sum(is.na(merged$Parch)), sum(is.na(merged$Ticket)), sum(is.na(merged$Fare)), 
-             sum(is.na(merged$Cabin)), sum(is.na(merged$Embarked)), sum(is.na(merged$IsTrain)))
-NAs <- data.frame(NAs_vec, row.names = colnames(merged))
-NAs
+
+NA_check <- function(x){
+  # Check if dataframe has NAs in each column
+  
+  NA_df <- matrix(ncol=ncol(x), nrow=1)
+  
+  # Check over columns
+  for(i in 1:ncol(x)) {
+    NA_df[ , i] <- sum(is.na((x[ , i])))
+  }
+  
+  NA_df <- data.frame(NA_df)
+  colnames(NA_df) <- colnames(x)
+  
+  NA_df
+}
+
+NA_check(merged)
 # NAs appear in 5 Columns: Survived (obviously), Age, Fare, Cabin, Embarked
 
 
